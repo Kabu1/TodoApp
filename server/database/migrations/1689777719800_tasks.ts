@@ -7,7 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('title').notNullable()
-      table.string('tasks').notNullable()
+      table.string('task').notNullable()
       table.boolean('completed').defaultTo(false)
 
       /**
