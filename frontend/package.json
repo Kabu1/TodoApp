@@ -15,6 +15,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
     "lodash": "^4.17.21",
     "tailwind": "^4.0.0",
