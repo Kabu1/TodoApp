@@ -1,10 +1,18 @@
+<!-- eslint-disable vue/no-export-in-script-setup -->
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
+import  navbarComponent  from './components/navbarComponent.vue'
+// export default { 
+//   components: { NavbarComponent }
+// }
 </script>
 
 <template>
   
-
-  <RouterView />
+  <header>
+    <navbar-component/>
+  </header>
+  <div class="bg-gray-200 h-full md:h-screen">
+    <RouterView />
+  </div>
 </template>
