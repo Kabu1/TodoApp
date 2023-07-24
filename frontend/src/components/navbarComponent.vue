@@ -27,21 +27,34 @@ console.log('are we here', open)
                     </button>
                 </div>
                 <div class="hidden md:block">
-                    <button class="px-8 py-3 rounded-md bg-gray-200 mx-2 hover:text-teal-400 transition ease-in-out duration-500 hover:shadow">
-                        <router-link :to="{name: 'Home'}">Home</router-link>
-                    </button>
-                    <button class="px-8 py-3 rounded-md bg-gray-200 mx-2 hover:text-teal-400 transition ease-in-out duration-500 hover:shadow">
-                        <router-link :to="{name: 'Tasks'}"> Tasks</router-link>
-                    </button>
+                        <router-link :to="{name: 'Home'}">
+                            <button class="px-8 py-3 rounded-md bg-gray-200 mx-2 hover:text-teal-400 transition ease-in-out duration-500 hover:shadow">
+                                Home
+                            </button>
+                        </router-link>
+                        <router-link :to="{name: 'Tasks'}">
+                            <button class="px-8 py-3 rounded-md bg-gray-200 mx-2 hover:text-teal-400 transition ease-in-out duration-500 hover:shadow">
+                                Tasks
+                            </button>
+                        </router-link>
                 </div>
             </div>
             <div :class="open ? 'block' : 'hidden'">
+                <router-link :to="{name: 'Home'}">
                     <button class="w-full block text-left hover:bg-gray-200 transition ease-in-out duration-500 px-10 py-3">
-                        <router-link :to="{name: 'Home'}">Home</router-link>
+                        Home
+
                     </button>
+                </router-link>
+
+                   
+                <router-link :to="{name: 'Tasks'}"> 
                     <button class="w-full block text-left hover:bg-gray-200 transition ease-in-out duration-500 px-10 py-3">
-                        <router-link :to="{name: 'Tasks'}"> Tasks</router-link>
+                        Tasks
                     </button>
+                </router-link>
+
+
             </div>
         </div>
     </div>

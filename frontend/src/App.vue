@@ -1,10 +1,10 @@
-<!-- eslint-disable vue/no-export-in-script-setup -->
+
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import  navbarComponent  from './components/navbarComponent.vue'
-// export default { 
-//   components: { NavbarComponent }
-// }
+import { RouterView } from 'vue-router';
+import NavbarComponent from './components/NavbarComponent.vue';
+
+// Export the components using the `components` option
+// const components = { NavbarComponent };
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import  navbarComponent  from './components/navbarComponent.vue'
   <header>
     <navbar-component/>
   </header>
-  <div class="bg-gray-200 h-full md:h-screen">
-    <RouterView />
+  <div class="bg-gray-200 h-full md:h-screen pt-20">
+    <router-view />
   </div>
 </template>

@@ -1,7 +1,14 @@
+<script setup lang="ts">
+
+</script>
+
 <template>
-  <div class="about">
+  <div>
+    <p>we are here</p>
   </div>
 </template>
 
-<style>
+
+<style scoped>
+
 </style>
