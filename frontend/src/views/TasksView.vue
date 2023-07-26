@@ -1,6 +1,36 @@
+<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { ref } from 'vue';
+import { mapActions } from 'vuex/types/index.js';
+// import { mapActions } from 'vuex/types/index.js';
+import { useStore } from 'vuex/types/index.js';
+const form = ref({
+  title: '',
+  task: '',
+});
+
+const completed = ref(false);
+
+function createTask() {
+  // Your implementation for creating a task goes here
+}
+// import { mapActions, useStore } from 'vuex';
+
+const store = useStore();
+
+const { FetchTasks } = mapActions('tasks');
+
+// methods: {
+//     ...mapActions('tasks',["FetchTasks"])
+
+// }
+</script> -->
+<!-- <script setup lang="ts">
+import { ref } from 'vue';
+import { mapActions } from 'vuex'
+import { useStore } from 'vuex'
+
 
 const form = ref({
   title: '',
@@ -12,7 +42,64 @@ const completed = ref(false);
 function createTask() {
   // Your implementation for creating a task goes here
 }
+
+const store = useStore();
+const { FetchTasks } = mapActions('tasks');
+
+function created(){
+    FetchTasks();
+}
+</script> -->
+
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { mapActions } from 'vuex'
+import { useStore } from 'vuex';
+
+
+const form = ref({
+  title: '',
+  task: '',
+});
+
+const completed = ref(false);
+
+function createTask() {
+  // Your implementation for creating a task goes here
+}
+
+const store = useStore();
+const { FetchTasks } = mapActions('tasks', ['FetchTasks']); // Pass the action method name in an array
+
+// Use the 'onMounted' lifecycle hook instead of the 'created' function
+onMounted(() => {
+  FetchTasks(); // Now you can call the action method correctly
+});
 </script>
+
+<!-- <script lang='ts'>
+import { mapActions } from 'vuex'
+    export default {
+        data() {
+            return {
+                form: {
+                    title: '',
+                    task: ''
+                }
+            }
+        },
+        methods: {
+            ...mapActions('tasks', ['FetchTasks']),
+            createTask(){                
+            },
+            created(){
+                this.FetchTasks()
+            }
+        }
+    }
+
+</script> -->
 
 <template>
 <div class="tasks h-full">

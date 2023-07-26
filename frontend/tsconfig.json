@@ -10,5 +10,7 @@
     {
       "path": "./tsconfig.vitest.json"
     }
-  ]
+  ],
+  "include": ["src", "path/to/shims-vuex.d.ts"]
+  
 }

@@ -1,8 +1,8 @@
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import NavbarComponent from './components/NavbarComponent.vue';
-
+// import NavbarComponent from './components/NavbarComponent.vue';
+// 
 // Export the components using the `components` option
 // const components = { NavbarComponent };
 </script>
