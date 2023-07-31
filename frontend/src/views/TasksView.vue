@@ -1,5 +1,5 @@
 <script lang='ts'>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
     export default {
         data() {
             return {
@@ -8,6 +8,9 @@ import { mapActions } from 'vuex'
                     task: ''
                 }
             }
+        },
+        computed : {
+          ...mapGetters('tasks', ['GetTasks'])  
         },
         methods: {
             // ...mapActions('tasks', ['FetchTasks']),
@@ -37,16 +40,18 @@ import { mapActions } from 'vuex'
             <div class="w-full md:w-1/2">
               <p class="text-gray-700 text-left text-lg py-8">View All Tasks</p>
                 
-                <div class="h-72 overflow-y-scroll w-full md:w-11/12 	">
-                    <div>
+                <div class="h-72 overflow-y-scroll w-full md:w-11/12 " v-if="GetTasks.data.length">
+                    <div v-for=" task in GetTasks.data" :key="task.id">
                         <div class="my-4 bg-white shadow rounded-md border-t-4 border-red-400 w-11/12" >
                             <div class="border-b-2 border-gray-300 p-2 items-center w-full flex justify-between">
-                                <p class="ml-2 text-gray-700">Task Title</p>
+                                <p class="ml-2 text-gray-700"> {{ task.title }}</p>
                                 <i class="fa fa-trash cursor-pointer text-red-400 fill-current hover:text-red-300"> </i>
                             </div>
                             <div class="py-4 px-3 flex justify-start items-center">
                                 <input type="checkbox" class="p-2 ml-2">
-                                <p class="text-gray-700 font-semibold ml-6">Task Description</p>
+                                <p class="text-gray-700 font-semibold ml-6" > {{ task.task }}</p>
+                                <!-- <p class="text-gray-700 font-semibold ml-6" v-if="GetTasks.data.length">{{ GetTasks.data. }}</p>
+                                <p class="text-gray-700 font-semibold ml-6" v-else>No tasks available.</p> -->
                             </div>
                         </div>
                     </div>
@@ -54,9 +59,12 @@ import { mapActions } from 'vuex'
                 </div>
 
                 <!-- Image When Tasks Section is Empty -->
-                <!-- <div>
-                    <img src="../assets/img/emptyview.png" alt="">
-                </div> -->
+                <div class="mx-auto text-center" v-else>
+                    <img src="../assets/img/empty.png" alt="" class="mx-auto mt-4" style="height: 200px; width: 200px;" >
+
+                    <!-- <img src="../assets/emptyview.png" alt="" class="mx-auto mt-4" style="height: 200px; width: 200px;" > -->
+                    <p class="text-gray-700 text-semibold text-lg text-center mt-4">No Tasks Available</p>
+                </div>
             </div>
 
             <!-- View Tasks Section -->
@@ -88,7 +96,7 @@ import { mapActions } from 'vuex'
 
 
             </div>
-            <button   class="bg-teal-500 block w-full px-8 py-2 text-white focus:outline-none hover:bg-teal-300 ease-in-out duration-500" @click="FetchTasks">fetch</button>
+            <!-- <button   class="bg-teal-500 block w-full px-8 py-2 text-white focus:outline-none hover:bg-teal-300 ease-in-out duration-500" @click="GetTasks.data">fetch</button> -->
             
             <!-- Create Tasks Section -->
         </div>
