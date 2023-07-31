@@ -46,11 +46,38 @@ const actions = {
         }
     },
        
-    async markTaskProgress(context : any, payload: any){
+    async MarkTaskProgress(context : any, payload: any){
         console.log('are we here markTaskProgress', base_url)
         try {
             // const response = await axios.get('${process.env.VITE_SOCKET_URL}/tasks');
             const response = await axios.patch(`${base_url}tasks/progress/${payload.id}`, payload.data); // Use the environment variable
+
+            console.log('response', response)
+            context.dispatch('FetchTasks')
+        } catch (error) {
+            console.log('error', error);
+            
+        }
+    },
+         
+    async DeleteTask(context : any, payload: any){
+        console.log('are we here markTaskProgress', base_url)
+        try {
+            // const response = await axios.get('${process.env.VITE_SOCKET_URL}/tasks');
+            const response = await axios.delete(`${base_url}tasks/delete/${payload.id}`); // Use the environment variable
+
+            console.log('response', response)
+            context.dispatch('FetchTasks')
+        } catch (error) {
+            console.log('error', error);
+            
+        }
+    },
+    async CreateTask(context : any, payload: any){
+        console.log('are we here create task', base_url)
+        try {
+            // const response = await axios.get('${process.env.VITE_SOCKET_URL}/tasks');
+            const response = await axios.post(`${base_url}tasks/new`, payload); // Use the environment variable
 
             console.log('response', response)
             context.dispatch('FetchTasks')

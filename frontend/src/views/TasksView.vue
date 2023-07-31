@@ -6,7 +6,8 @@ import { mapActions, mapGetters } from 'vuex'
                 form: {
                     title: '',
                     task: ''
-                }
+                }, 
+                error: null
             }
         },
         computed : {
@@ -14,9 +15,20 @@ import { mapActions, mapGetters } from 'vuex'
         },
         methods: {
             // ...mapActions('tasks', ['FetchTasks']),
-            ...mapActions('tasks', ['FetchTasks', 'markTaskProgress']),
+            ...mapActions('tasks', ['FetchTasks', 'MarkTaskProgress', 'DeleteTask', 'CreateTask']),
 
             createTask(){   
+                if(this.form.title && this.form.task) {
+                    const payload = {
+                        title: this.form.title,
+                        task: this.form.task
+                    }
+                    this.CreateTask(payload)
+                    this.clearForm()
+                } else {
+
+                    this.error = 'please fill all the required fields'
+                }
                             //  
             },
             markProgress(task){
@@ -26,9 +38,26 @@ import { mapActions, mapGetters } from 'vuex'
                         status :task.completed
                     }
                 }
-                this.markTaskProgress(payload);
+                this.MarkTaskProgress(payload);
+            },
+            deleteTask(task){
+                this.DeleteTask(task);
+            },
+            clearForm( ){
+                this.form.title = '',
+                this.form.task = ''
             }
            
+        },
+        watch : {
+            error: {
+                handler: function (){
+                    let as = this;
+                    setTimeout(function(){
+                        as.error = null
+                    }, 3000)
+                }
+            }
         },
         created(){
                 console.log('are we here yettt')
@@ -54,7 +83,7 @@ import { mapActions, mapGetters } from 'vuex'
                         <div class="my-4 bg-white shadow rounded-md border-t-4 border-red-400 w-11/12" >
                             <div class="border-b-2 border-gray-300 p-2 items-center w-full flex justify-between">
                                 <p class="ml-2 text-gray-700"> {{ task.title }}</p>
-                                <i class="fa fa-trash cursor-pointer text-red-400 fill-current hover:text-red-300"> </i>
+                                <i class="fa fa-trash-o cursor-pointer text-red-400 fill-current hover:text-red-300" @click="deleteTask(task)">  </i>                                
                             </div>
                             <div class="py-4 px-3 flex justify-start items-center">
                                 <input type="checkbox" class="p-2 ml-2" v-model="task.completed" @change="markProgress(task)">
@@ -84,8 +113,8 @@ import { mapActions, mapGetters } from 'vuex'
 
                     <p class="text-center font-semibold text-gray-700 text-xl"> Create New Task</p>
 
-                    <div class="bg-red-200 shadow rounded w-64 mx-auto p-3 mt-3 text-red-600">
-                        <p class="text-center">Errors here</p>
+                    <div class="bg-red-200 shadow rounded w-64 mx-auto p-3 mt-3 text-red-600" v-show="error">
+                        <p class="text-center"> {{ error }}</p>
                     </div>
                     <div class="mt-8">
                         <input type="text" v-model="form.title" class="shadow border rounded w-full py-3 px-4 text-gray-700 focus:outline-none"
