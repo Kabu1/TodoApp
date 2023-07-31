@@ -4,7 +4,7 @@ Route.group(()=> {
 
   Route.get('/tasks', 'TasksController.index')
 
-  Route.get('/tasks/:id','TasksController.show')
+  Route.get('/tasks/:id', 'TasksController.show')
   Route.post('/tasks/new', 'TasksController.store')
   Route.patch('/tasks/progress/:id', 'TasksController.update')
   Route.delete('/tasks/delete/:id', 'TasksController.destroy')

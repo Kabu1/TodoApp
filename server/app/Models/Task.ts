@@ -10,7 +10,6 @@ export default class Task extends BaseModel {
 
   @column()
   public task: string
-  
   @column()
   public completed: boolean
 
