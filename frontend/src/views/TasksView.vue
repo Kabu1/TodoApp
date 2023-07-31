@@ -14,11 +14,20 @@ import { mapActions, mapGetters } from 'vuex'
         },
         methods: {
             // ...mapActions('tasks', ['FetchTasks']),
-            ...mapActions('tasks', ['FetchTasks']),
+            ...mapActions('tasks', ['FetchTasks', 'markTaskProgress']),
 
             createTask(){   
                             //  
             },
+            markProgress(task){
+                const payload = {
+                    id: task.id,
+                    data: {
+                        status :task.completed
+                    }
+                }
+                this.markTaskProgress(payload);
+            }
            
         },
         created(){
@@ -48,8 +57,8 @@ import { mapActions, mapGetters } from 'vuex'
                                 <i class="fa fa-trash cursor-pointer text-red-400 fill-current hover:text-red-300"> </i>
                             </div>
                             <div class="py-4 px-3 flex justify-start items-center">
-                                <input type="checkbox" class="p-2 ml-2">
-                                <p class="text-gray-700 font-semibold ml-6" > {{ task.task }}</p>
+                                <input type="checkbox" class="p-2 ml-2" v-model="task.completed" @change="markProgress(task)">
+                                <p class="text-gray-700 font-semibold ml-6" :class="task.completed ? 'line-through opacity-20' : ''" > {{ task.task }}</p>
                                 <!-- <p class="text-gray-700 font-semibold ml-6" v-if="GetTasks.data.length">{{ GetTasks.data. }}</p>
                                 <p class="text-gray-700 font-semibold ml-6" v-else>No tasks available.</p> -->
                             </div>

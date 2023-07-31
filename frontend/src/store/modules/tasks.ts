@@ -44,7 +44,22 @@ const actions = {
             console.log('error', error);
             
         }
-    }
+    },
+       
+    async markTaskProgress(context : any, payload: any){
+        console.log('are we here markTaskProgress', base_url)
+        try {
+            // const response = await axios.get('${process.env.VITE_SOCKET_URL}/tasks');
+            const response = await axios.patch(`${base_url}tasks/progress/${payload.id}`, payload.data); // Use the environment variable
+
+            console.log('response', response)
+            context.dispatch('FetchTasks')
+        } catch (error) {
+            console.log('error', error);
+            
+        }
+    },
+    
 };
 
 export default {
