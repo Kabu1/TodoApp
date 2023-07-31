@@ -1,84 +1,4 @@
-<!-- eslint-disable @typescript-eslint/no-unused-vars -->
-
-<!-- <script setup lang="ts">
-import { ref } from 'vue';
-import { mapActions } from 'vuex/types/index.js';
-// import { mapActions } from 'vuex/types/index.js';
-import { useStore } from 'vuex/types/index.js';
-const form = ref({
-  title: '',
-  task: '',
-});
-
-const completed = ref(false);
-
-function createTask() {
-  // Your implementation for creating a task goes here
-}
-// import { mapActions, useStore } from 'vuex';
-
-const store = useStore();
-
-const { FetchTasks } = mapActions('tasks');
-
-// methods: {
-//     ...mapActions('tasks',["FetchTasks"])
-
-// }
-</script> -->
-<!-- <script setup lang="ts">
-import { ref } from 'vue';
-import { mapActions } from 'vuex'
-import { useStore } from 'vuex'
-
-
-const form = ref({
-  title: '',
-  task: '',
-});
-
-const completed = ref(false);
-
-function createTask() {
-  // Your implementation for creating a task goes here
-}
-
-const store = useStore();
-const { FetchTasks } = mapActions('tasks');
-
-function created(){
-    FetchTasks();
-}
-</script> -->
-
-
-<script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { mapActions } from 'vuex'
-import { useStore } from 'vuex';
-
-
-const form = ref({
-  title: '',
-  task: '',
-});
-
-const completed = ref(false);
-
-function createTask() {
-  // Your implementation for creating a task goes here
-}
-
-const store = useStore();
-const { FetchTasks } = mapActions('tasks', ['FetchTasks']); // Pass the action method name in an array
-
-// Use the 'onMounted' lifecycle hook instead of the 'created' function
-onMounted(() => {
-  FetchTasks(); // Now you can call the action method correctly
-});
-</script>
-
-<!-- <script lang='ts'>
+<script lang='ts'>
 import { mapActions } from 'vuex'
     export default {
         data() {
@@ -90,18 +10,26 @@ import { mapActions } from 'vuex'
             }
         },
         methods: {
+            // ...mapActions('tasks', ['FetchTasks']),
             ...mapActions('tasks', ['FetchTasks']),
-            createTask(){                
+
+            createTask(){   
+                            //  
             },
-            created(){
+           
+        },
+        created(){
+                console.log('are we here yettt')
                 this.FetchTasks()
             }
-        }
     }
 
-</script> -->
+</script>
+
+
 
 <template>
+
 <div class="tasks h-full">
     <div class="w-10/12 mx-auto pb-12">
         <div class="flex flex-row flex-wrap  mt-12 items-center justify-between">
@@ -158,7 +86,10 @@ import { mapActions } from 'vuex'
                     </div>
                 </form>
 
+
             </div>
+            <button   class="bg-teal-500 block w-full px-8 py-2 text-white focus:outline-none hover:bg-teal-300 ease-in-out duration-500" @click="FetchTasks">fetch</button>
+            
             <!-- Create Tasks Section -->
         </div>
     </div>
