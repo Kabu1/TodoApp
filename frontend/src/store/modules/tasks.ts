@@ -1,6 +1,5 @@
-import axios from 'axios'
-const base_url = import.meta.env.VITE_SOCKET_URL
-
+// const base_url = import.meta.env.VITE_SOCKET_URL
+import TaskService from '@/apis/taskService'
 
 const state = () => {
             // console.log('are we ere')
@@ -33,10 +32,10 @@ const mutations  = {
 const actions = {
     
     async FetchTasks(context : any){
-        console.log('are we here fetchtasks', base_url)
+        // console.log('are we here fetchtasks', base_url)
         try {
             // const response = await axios.get('${process.env.VITE_SOCKET_URL}/tasks');
-            const response = await axios.get(`${base_url}tasks`); // Use the environment variable
+            const response = await TaskService.fetch(); // Use the environment variable
 
             console.log('response', response)
             context.commit('SET_TASKS_STATE', response.data)
@@ -47,10 +46,10 @@ const actions = {
     },
        
     async MarkTaskProgress(context : any, payload: any){
-        console.log('are we here markTaskProgress', base_url)
+        // console.log('are we here markTaskProgress', base_url)
         try {
             // const response = await axios.get('${process.env.VITE_SOCKET_URL}/tasks');
-            const response = await axios.patch(`${base_url}tasks/progress/${payload.id}`, payload.data); // Use the environment variable
+            const response = await TaskService.update(payload); // Use the environment variable
 
             console.log('response', response)
             context.dispatch('FetchTasks')
@@ -64,7 +63,7 @@ const actions = {
         console.log('are we here markTaskProgress', base_url)
         try {
             // const response = await axios.get('${process.env.VITE_SOCKET_URL}/tasks');
-            const response = await axios.delete(`${base_url}tasks/delete/${payload.id}`); // Use the environment variable
+            const response = await TaskService.delete(payload); // Use the environment variable
 
             console.log('response', response)
             context.dispatch('FetchTasks')
@@ -74,10 +73,10 @@ const actions = {
         }
     },
     async CreateTask(context : any, payload: any){
-        console.log('are we here create task', base_url)
+        // console.log('are we here create task', base_url)
         try {
             // const response = await axios.get('${process.env.VITE_SOCKET_URL}/tasks');
-            const response = await axios.post(`${base_url}tasks/new`, payload); // Use the environment variable
+            const response = await TaskService.create(payload); // Use the environment variable
 
             console.log('response', response)
             context.dispatch('FetchTasks')

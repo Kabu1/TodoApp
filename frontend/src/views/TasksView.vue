@@ -80,10 +80,10 @@ import { mapActions, mapGetters } from 'vuex'
                 
                 <div class="h-72 overflow-y-scroll w-full md:w-11/12 " v-if="GetTasks.data.length">
                     <div v-for=" task in GetTasks.data" :key="task.id">
-                        <div class="my-4 bg-white shadow rounded-md border-t-4 border-red-400 w-11/12" >
+                        <div class="my-4 bg-white shadow rounded-md border-t-4  w-11/12" :class="task.completed ? 'border-green-400':'border-red-400'" >
                             <div class="border-b-2 border-gray-300 p-2 items-center w-full flex justify-between">
                                 <p class="ml-2 text-gray-700"> {{ task.title }}</p>
-                                <i class="fa fa-trash-o cursor-pointer text-red-400 fill-current hover:text-red-300" @click="deleteTask(task)">  </i>                                
+                                <i class="fa fa-trash-o cursor-pointer fill-current hover:text-red-300" :class="task.completed ? 'text-green-400':'text-red-400'" @click="deleteTask(task)">  </i>                                
                             </div>
                             <div class="py-4 px-3 flex justify-start items-center">
                                 <input type="checkbox" class="p-2 ml-2" v-model="task.completed" @change="markProgress(task)">

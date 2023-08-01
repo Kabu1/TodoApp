@@ -12,3 +12,9 @@ declare module '@vue/runtime-core' {
     $store: Store<State>
   }
 }
+declare module 'vue-page-transition';
+
+// declare module 'vue-page-transition' {
+//   const content: any;
+//   export vue-page-transition;
+// }

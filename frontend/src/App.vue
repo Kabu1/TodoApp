@@ -13,6 +13,8 @@ import { RouterView } from 'vue-router';
     <navbar-component/>
   </header>
   <div class="bg-gray-200 h-full md:h-screen pt-20">
-    <router-view />
+    <VuePageTransition name="fade-in-right">
+                <router-view />
+            </VuePageTransition>
   </div>
 </template>
