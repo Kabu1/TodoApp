@@ -1,5 +1,5 @@
 import Route from '@ioc:Adonis/Core/Route'
-Route.group(()=> {
+Route.group(() => {
   console.log('WE ARE HERE')
 
   Route.get('/tasks', 'TasksController.index')
