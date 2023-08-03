@@ -7,8 +7,8 @@ import { mapActions, mapGetters } from 'vuex'
                     title: '',
                     task: ''
                 }, 
-                error: null
-            }
+                error: null as string | null
+                        }
         },
         computed : {
           ...mapGetters('tasks', ['GetTasks'])  
@@ -31,7 +31,7 @@ import { mapActions, mapGetters } from 'vuex'
                 }
                             //  
             },
-            markProgress(task){
+            markProgress(task : any){
                 const payload = {
                     id: task.id,
                     data: {
@@ -40,7 +40,7 @@ import { mapActions, mapGetters } from 'vuex'
                 }
                 this.MarkTaskProgress(payload);
             },
-            deleteTask(task){
+            deleteTask(task: any){
                 this.DeleteTask(task);
             },
             clearForm( ){
@@ -54,13 +54,12 @@ import { mapActions, mapGetters } from 'vuex'
                 handler: function (){
                     let as = this;
                     setTimeout(function(){
-                        as.error = null
+                        as.error = null as string | null
                     }, 3000)
                 }
             }
         },
         created(){
-                console.log('are we here yettt')
                 this.FetchTasks()
             }
     }
@@ -76,11 +75,11 @@ import { mapActions, mapGetters } from 'vuex'
         <div class="flex flex-row flex-wrap  mt-12 items-center justify-between">
             <!-- View Tasks Section -->
             <div class="w-full md:w-1/2">
-              <p class="text-gray-700 text-left text-lg py-8">View All Tasks</p>
+              <p class="text-gray-700 text-left text-lg pb-2 font-semibold">All Tasks</p>
                 
                 <div class="h-72 overflow-y-scroll w-full md:w-11/12 " v-if="GetTasks.data.length">
                     <div v-for=" task in GetTasks.data" :key="task.id">
-                        <div class="my-4 bg-white shadow rounded-md border-t-4  w-11/12" :class="task.completed ? 'border-green-400':'border-red-400'" >
+                        <div class="my-2 bg-white shadow rounded-md border-t-4  w-11/12" :class="task.completed ? 'border-green-400':'border-red-400'" >
                             <div class="border-b-2 border-gray-300 p-2 items-center w-full flex justify-between">
                                 <p class="ml-2 text-gray-700"> {{ task.title }}</p>
                                 <i class="fa fa-trash-o cursor-pointer fill-current hover:text-red-300" :class="task.completed ? 'text-green-400':'text-red-400'" @click="deleteTask(task)">  </i>                                

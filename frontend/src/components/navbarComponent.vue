@@ -3,7 +3,6 @@
 import { ref } from 'vue';
 
 const open = ref(false);
-console.log('are we here', open)
 </script>
 
 <template>

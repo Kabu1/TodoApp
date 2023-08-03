@@ -11,8 +11,9 @@ export default {
         return Api().patch(`tasks/progress/${payload.id}`, payload.data)
          
     },
-    delete(payload: any) {
-        return Api().delete(`tasks/delete/{payload.id}`, payload.data)
+    delete(payload : any) {
+        console.log('payload', payload)
+        return Api().delete(`tasks/delete/${payload.id}`)
     }
 
 }

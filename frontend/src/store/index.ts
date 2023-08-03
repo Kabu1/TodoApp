@@ -44,7 +44,7 @@
 //   },
 // })
 
-import {createStore} from "vuex";
+import {createStore}  from 'vuex'
 // import createPersistedState from "vuex-persistedstate";
 import tasks from './modules/tasks'
 
@@ -63,10 +63,9 @@ const store = createStore({
     ],
 
     modules: {
-        tasks,
-        namespaced: true,
-       
+        tasks,       
     }
 });
 
 export default store;
+

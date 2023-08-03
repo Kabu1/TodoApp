@@ -11,6 +11,10 @@
       "path": "./tsconfig.vitest.json"
     }
   ],
-  "include": ["src", "path/to/shims-vuex.d.ts"]
+  "include": ["src/", "path/to/shims-vuex.d.ts"],
+  "compilerOptions": {
+    "types": ["vuex", /* other types */],
+    /* other compiler options */
+  }
   
 }
